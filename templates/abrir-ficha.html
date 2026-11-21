@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MEDHYPEN</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body> <style>
+    body {
+        background-image: url('../static/fundo7.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+}
+</style>
+        <!--cabeçalho com dropdown (abas que conseguem expandir para baixo)-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+              <img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="190" height="60">
+    
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav">
+                <li class="nav-item"><!-- botão que leva para a página inicial (reinicia a página) -->
+                  <a class="nav-link active" aria-current="page" href="/tela-inicial">Início</a>
+                </li>
+    
+                <li class="nav-item"><!-- botão que leva para a página sobre -->
+                  <a class="nav-link" href="/sobre">Sobre</a>
+                </li>
+    
+                
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Fichas
+                  </a>
+                  <ul class="dropdown-menu"><!--menu que abre para baixo-->
+                    <li><a class="dropdown-item" href="/cadastrar-pacientes">Criar nova ficha</a></li>
+                    <li><a class="dropdown-item" href="/abrir-ficha">Abrir ficha existente</a></li>
+                    <li><a class="dropdown-item" href="#"></a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    <div class="row">
+      <div class="container w-50 p-5 container-center">
+        <div class="text text-center text-dark p-4">
+        <h1>CONSULTA DE PRONTUÁRIO</h1>
+      </div>
+      <!-- Formulário de busca de prontuário -->
+    <div class="container w-50 p-5">
+      <div class="text-center text-dark">
+        <h1>CONSULTA DE PRONTUÁRIO</h1>
+      </div>
+      <form action="/abrir-ficha" method="POST">
+        <div class="mb-3">
+          <label for="cpf" class="form-label text-dark">CPF do paciente</label>
+          <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite o CPF">
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+      </form>
+
+      <!-- Exibir mensagens de erro -->
+      {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+      {% endif %}
+
+      <!-- Exibir informações do paciente -->
+      {% if paciente %}
+        <div class="text-center text-dark">
+          <h2>INFORMAÇÕES DO PACIENTE</h2>
+          <p><strong>Nome:</strong> {{ paciente.nome }}</p>
+          <p><strong>CPF:</strong> {{ paciente.cpf }}</p>
+          <p><strong>Data de Nascimento:</strong> {{ paciente.data_nascimento }}</p>
+          <p><strong>Endereço:</strong> {{ paciente.endereco }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

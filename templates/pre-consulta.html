@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pré-consulta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+    <style>
+body {
+          background-image: url('../static/fundo7.jpg');
+          background-size: cover;
+          background-repeat: no-repeat;
+}
+.form-group1 {
+        background-color: rgb(123, 141, 244);
+      }
+      /* Estilo para o fundo, incluindo áreas escuras e claras */
+
+
+/* Degradê no texto */
+.texto-degrade {
+   text-shadow: 2px 2px 4px rgba(37, 5, 92, 0.719);;
+   color: azure;
+}
+
+      
+  </style>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <img src="{{ url_for('static', filename='logo2.png') }}" alt="logo" width="190" height="60">
+  
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+  
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item"><!-- botão que leva para a página inicial (reinicia a página) -->
+                <a class="nav-link active" aria-current="page" href="/tela-inicial">Início</a>
+              </li>
+  
+              <li class="nav-item"><!-- botão que leva para a página sobre -->
+                <a class="nav-link" href="/sobre">Sobre</a>
+              </li>
+  
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Fichas
+                </a>
+                <ul class="dropdown-menu"><!--menu que abre para baixo-->
+                  <li><a class="dropdown-item" href="/cadastrar-pacientes">Criar nova ficha</a></li>
+                  <li><a class="dropdown-item" href="/abrir-ficha">Abrir ficha existente</a></li>
+                  <li><a class="dropdown-item" href="/pre-consulta">Pre-consulta</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+    <div class="row">
+        <div class="container w-50 p-2 container-center">
+          <div class="text text-center">
+          <h1>PRÉ-CONSULTA</h1>
+        </div>
+    
+    <form action="/pre-consulta" method="post">
+
+        <div class="form-group p-3">
+          <label for="pacientes"><text class="texto-degrade">Paciente:</text></label>
+          <select id="paciente" name="paciente" class="form-control">
+              <option value="">Selecione o paciente:</option>
+              {% for paciente in pacientes %}
+                  <option value="{{ paciente[0] }}">{{ paciente[1] }}</option>
+              {% endfor %}
+          </select>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="dataTriagem"><text class="texto-degrade">Data da Triagem:</text></label>
+          <input type="date" class="form-control" name="data_triagem">
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="endereco"><text class="texto-degrade">Endereço:</text></label>
+          <input type="text" class="form-control" name="endereco" placeholder="Insira seu endereço">
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="contatoEmergencia"><text class="texto-degrade">Contato de Emergência:</text></label>
+          <input type="text" class="form-control" name="contato_emergencia" placeholder="Insira o contato de emergência">
+        </div>
+      
+        <div class="form-group1 p-3 opacity-75 rounded">
+          <label for="sintomas"><p class="text text-light">Sintomas:</p></label>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Fraqueza Muscular" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+              Fraqueza muscular
+            </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Dores Musculares" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+              Dores Musculares
+            </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Fadiga Crônica" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+              Fadiga crônica ou cansaço constante
+            </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Câimbra Noturna" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+              Câimbra Noturna
+            </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Câimbra nos exercícios" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+               Câimbra nos exercícios
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Dores nas pernas" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+               Dores nas pernas
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Dormência nos membros" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+               Dormência nos membros
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Formigamentos" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Formigamentos
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Inchaço no corpo" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Inchaço no corpo
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Olho fibrilando(tremendo)" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Olho Fibrilando(tremendo)
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Artrite" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Artrite
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Artrose" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Artrose
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Dores articulares" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Dores articulares
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Halitose(mau hálito)" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Halitose(mau hálito)
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Aftas" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Aftas
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Herpes" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Herpes
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Bruxismo" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Bruxismo
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Corrimento Nasal" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Corrimento Nasal
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Espirros" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Espirros
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Renite" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Renite
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Sinusite" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Sinusite
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Asma" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Asma
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Bronquite" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Bronquite
+              </p>
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="Amidalite ou Otite com frequência" name="sintomas" >
+            <label class="form-check-label" for="flexCheckChecked">
+              <p class="text text-light">
+                Amidalite ou Otite com frequência
+              </p>
+            </label>
+          </div>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="intensidadeSintomas"><text class="texto-degrade">Intensidade dos Sintomas:</text></label>
+          <select class="form-control" name="intensidade_sintomas">
+            <option value="">Selecione</option>
+            <option value="Leve">Leve</option>
+            <option value="Moderada">Moderada</option>
+            <option value="Fortemente">Fortemente</option>
+          </select>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="fatoresSintomas"><text class="texto-degrade">Fatores dos Sintomas:</text></label>
+          <textarea class="form-control" name="fatores_sintomas" placeholder="Descreva os fatores que contribuem para os sintomas"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="informacoesSintomas"><text class="texto-degrade">Informações dos Sintomas:</text></label>
+          <textarea class="form-control" name="informacoes_sintomas" placeholder="Descreva mais sobre os sintomas"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="doencasPreexistentes"><text class="texto-degrade">Doenças Preexistentes:</text></label>
+          <textarea class="form-control" name="doencas_preexistentes" placeholder="Descreva as doenças preexistentes"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="condicoesCronicas"><text class="texto-degrade">Condições Crônicas:</text></label>
+          <textarea class="form-control" name="condicoes_cronicas" placeholder="Descreva as condições crônicas"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="historicoCirurgico"><text class="texto-degrade">Histórico Cirúrgico:</text></label>
+          <textarea class="form-control" name="historico_cirurgico" placeholder="Descreva o histórico cirúrgico"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="alergias"><text class="texto-degrade">Alergias:</text></label>
+          <textarea class="form-control" name="alergias" placeholder="Descreva as alergias"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="usoMedicamentos"><text class="texto-degrade">Uso de Medicamentos:</text></label>
+          <textarea class="form-control" name="uso_medicamento" placeholder="Descreva o uso de medicamentos"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="doencasHereditarias"><text class="texto-degrade">Doenças Hereditárias:</text></label>
+          <textarea class="form-control" name="doencas_hereditarias" placeholder="Descreva as doenças hereditárias"></textarea>
+        </div>
+      
+        <div class="form-group p-3">
+          <label for="condicoesSaude"><text class="texto-degrade">Condições de Saúde:</text></label>
+          <textarea class="form-control" name="condicoes_saude" placeholder="Descreva as condições de saúde"></textarea>
+        </div>
+        <div class="d-flex  justify-content-center p-4">
+
+        <button class="btn btn-primary btn-lg" role="button" type="submit">Enviar</button>
+      </div>
+      </div>
+
+        
+      </form>
+    </div>
+</div>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+

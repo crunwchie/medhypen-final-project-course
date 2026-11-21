@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pristine Care</title>
+    <link rel="stylesheet" type="text/css" href="#style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  </head>
+  <body>
+ <!-- Botão de abrir o formulário para se cadastrar-->
+ <div class="position-absolute top-50 start-50 translate-middle">
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Entre
+  </button></div>
+  
+  <!-- Modal formulário para os funcionários se cadastrarem -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro</h1>
+        </div>
+        <div class="modal-body">
+            <!--Formulário, com usuário e senha-->
+            <form>
+                <div class="mb-3">
+                  <label for="InputUser" class="form-label">Usuário</label>
+                  <input type="tel" class="form-control" id="InputUser" aria-describedby="Help">
+                  <div id="Help" class="form-text">Apenas funcionários liberados possuem acesso.</div>
+                </div>
+                <div class="mb-3">
+                  <label for="InputPassword1" class="form-label">Senha</label>
+                  <input type="password" class="form-control" id="InputPassword1">
+                </div>
+                <button type="submit" class="btn btn-success">Entrar</button>
+              </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>
